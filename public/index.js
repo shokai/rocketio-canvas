@@ -11,13 +11,18 @@ $(function(){
   canvas.on("draw", function(pos){
     console.log(pos);
     if(pos != null){
-      canvas.draw_line({
+      var data = {
         style: $("select#color").val(),
         width: $("#stroke select#size").val(),
         cap: "square",
         from: pos.from,
         to: pos.to
-      });
+      };
+      io.push("draw", data);
     }
+  });
+
+  io.on("draw", function(data){
+    canvas.draw_line(data);
   });
 });

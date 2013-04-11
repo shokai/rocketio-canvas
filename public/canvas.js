@@ -1,4 +1,5 @@
 var Canvas = function(opts){
+  var self = this;
   new EventEmitter().apply(this);
   if(opts.target){
     if(typeof opts.target === "string") this.target = $(opts.target);
@@ -9,7 +10,6 @@ var Canvas = function(opts){
   }
   this.target.attr("width", opts.width || 600).attr("height", opts.height || 400);
   var ctx = this.target[0].getContext("2d");
-  var self = this;
   this.is_drawing = false;
   $("body").mouseup(function(){
     self.is_drawing = false;
@@ -18,14 +18,15 @@ var Canvas = function(opts){
     self.is_drawing = true;
   });
   var last_pos = {x: null, y: null};
-  this.target.mousemove(function(e){
+  var cursor_move = function(e){
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
     var y = e.clientY - rect.top;
     var pos = {x: x, y: y};
     if(self.is_drawing) self.emit("draw", {from: last_pos, to: pos});
     last_pos = pos;
-  });
+  };
+  this.target.mousemove(cursor_move);
   this.draw_line = function(line){
     ctx.strokeStyle = line.style;
     ctx.lineWidth = line.width;

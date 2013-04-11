@@ -4,6 +4,11 @@ io.on :connect do |client|
   puts "new #{client.type} connect!! <#{client.session}>"
 end
 
+io.on :draw do |data, client|
+  puts "draw : #{data} from <#{client}>"
+  io.push :draw, data
+end
+
 get "/" do
   haml :index
 end
