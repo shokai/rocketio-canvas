@@ -21,13 +21,6 @@ var Canvas = function(opts){
   this.target.bind("mousedown", function(){
     self.is_drawing = true;
   });
-  this.target.bind("touchend", function(){
-    self.is_drawing = false;
-    last_pos = null;
-  });
-  this.target.bind("touchstart", function(){
-    self.is_drawing = true;
-  });
   this.target.bind("mousemove", function(e){
     var rect = e.target.getBoundingClientRect();
     var x = e.clientX - rect.left;
@@ -35,6 +28,13 @@ var Canvas = function(opts){
     var pos = {x: x, y: y};
     if(self.is_drawing && last_pos !== null) self.emit("draw", {from: last_pos, to: pos});
     last_pos = pos;
+  });
+  this.target.bind("touchend", function(){
+    self.is_drawing = false;
+    last_pos = null;
+  });
+  this.target.bind("touchstart", function(){
+    self.is_drawing = true;
   });
   this.target.bind("touchmove", function(e){
     e.preventDefault();
