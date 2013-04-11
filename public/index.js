@@ -4,6 +4,11 @@ io.on("connect", function(){
   console.log("connect!! "+io.session);
 });
 
+io.on("clients", function(data){
+  console.log(data);
+  $("#clients").text("websocket:"+data.websocket+" comet:"+data.comet);
+});
+
 $(function(){
   $("#stroke select#size").val(4);
   $("#btn_clear").click(function(){

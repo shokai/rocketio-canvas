@@ -3,9 +3,20 @@ logs = Hash.new{|h,k| h[k] = Array.new }
 
 io.on :connect do |client|
   puts "new #{client.type} connect!! <#{client.session}>"
+  io.push :clients, {
+    :websocket => io.sessions[:websocket].size,
+    :comet => io.sessions[:comet].size
+  }
   logs[client.channel].each do |log|
     io.push :draw, log, :to => client.session
   end
+end
+
+io.on :disconnect do |client|
+  io.push :clients, {
+    :websocket => io.sessions[:websocket].size,
+    :comet => io.sessions[:comet].size
+  }
 end
 
 io.on :draw do |data, client|
