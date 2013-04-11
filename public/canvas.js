@@ -48,7 +48,8 @@ var Canvas = function(opts){
   this.draw_line = function(line){
     ctx.strokeStyle = line.style;
     ctx.lineWidth = line.width;
-    ctx.lineCap = line.cap;
+    ctx.lineCap = line.lineCap;
+    ctx.lineJoin = line.lineJoin;
     ctx.beginPath();
     ctx.moveTo(line.from.x, line.from.y);
     ctx.lineTo(line.to.x, line.to.y);

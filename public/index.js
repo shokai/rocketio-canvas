@@ -25,7 +25,8 @@ $(function(){
       var data = {
         style: $("select#color").val(),
         width: $("#stroke select#size").val(),
-        cap: "square",
+        lineCap: "round",
+        lineJoin: "round",
         from: pos.from,
         to: pos.to
       };
