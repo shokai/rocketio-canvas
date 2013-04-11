@@ -2,10 +2,29 @@
 %html
   %head
     %title RocketIO Canvas
+    :css
+      canvas#img{
+        border : solid 1px #333;
+      }
   %body
-    %header
+    %div#header
       %h1 RocketIO Canvas
-    %main
+    %div#main
+      %div#ctrl
+        %div{:id => 'stroke'}
+          color :
+          %select{:id => 'color'}
+            %option{:value => '#FF0000'} red
+            %option{:value => '#00FF00'} green
+            %option{:value => '#0000FF'} blue
+          size :
+          %select{:id => 'size'}
+            - for i in 1..10 do
+              %option{:value => i}= i
+        %div
+          %input{:id => 'btn_reset', :type => 'button', :value => 'RESET'}
+      %canvas#img
     %script{:src => "//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"}
     %script{:src => rocketio_js}
+    %script{:src => "#{app_root}/canvas.js"}
     %script{:src => "#{app_root}/index.js"}
