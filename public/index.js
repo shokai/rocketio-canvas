@@ -1,4 +1,4 @@
-var io = new RocketIO().connect();
+var io = new RocketIO({channel: channel}).connect();
 
 io.on("connect", function(){
   console.log("connect!! "+io.session);

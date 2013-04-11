@@ -6,10 +6,15 @@ end
 
 io.on :draw do |data, client|
   puts "draw : #{data} from <#{client}>"
-  io.push :draw, data
+  io.push :draw, data, :channel => client.channel
 end
 
 get "/" do
+  redirect "/ch1"
+end
+
+get "/:channel" do
+  @channel = params[:channel]
   haml :index
 end
 
