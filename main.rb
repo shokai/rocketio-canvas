@@ -20,7 +20,7 @@ io.on :disconnect do |client|
 end
 
 io.on :draw do |data, client|
-  puts "draw : #{data} from <#{client}>" if development?
+  # puts "draw : #{data} from <#{client}>"
   logs[client.channel].push data
   while logs[client.channel].size > 10000
     logs[client.channel].shift
