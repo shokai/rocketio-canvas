@@ -6,10 +6,16 @@ io.on("connect", function(){
 
 $(function(){
   $("#stroke select#size").val(4);
+  $("#btn_clear").click(function(){
+    io.push("clear");
+  });
+
+  io.on("clear", function(){
+    canvas.clear();
+  });
 
   var canvas = new Canvas({target: "canvas#img", width: 640, height: 480});
   canvas.on("draw", function(pos){
-    console.log(pos);
     if(pos != null){
       var data = {
         style: $("select#color").val(),

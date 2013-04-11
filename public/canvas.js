@@ -8,7 +8,9 @@ var Canvas = function(opts){
   else{
     throw("option 'target' missing");
   }
-  this.target.attr("width", opts.width || 600).attr("height", opts.height || 400);
+  this.width = opts.width || 600;
+  this.height = opts.height || 400;
+  this.target.attr("width", this.width).attr("height", this.height);
   var ctx = this.target[0].getContext("2d");
   this.is_drawing = false;
   $("body").mouseup(function(){
@@ -36,5 +38,8 @@ var Canvas = function(opts){
     ctx.lineTo(line.to.x, line.to.y);
     ctx.closePath();
     ctx.stroke();
+  };
+  this.clear = function(){
+    ctx.clearRect(0, 0, self.width, self.height);
   };
 };

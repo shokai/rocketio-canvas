@@ -17,6 +17,12 @@ io.on :draw do |data, client|
   io.push :draw, data, :channel => client.channel
 end
 
+io.on :clear do |data, client|
+  puts "clear <#{client.channel}>"
+  logs.delete client.channel
+  io.push :clear, :channel => client.channel
+end
+
 get "/" do
   redirect "/ch1"
 end
