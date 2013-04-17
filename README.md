@@ -7,7 +7,7 @@ share canvas on [Sinatra RocketIO](https://github.com/shokai/sinatra-rocketio)
 
 Demo
 ----
-http://dev.shokai.org:4200
+http://canvas.shokai.org
 
 
 Install Dependencies
