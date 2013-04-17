@@ -27,5 +27,5 @@ Run
 
 set websocket port
 
-    % WS_PORT=18080 rackup config.ru -p 5000
-    % WS_PORT=18080 rackup config.ru -p 5000 --env production
+    % WS_PORT=5001 rackup config.ru -p 5000
+    % WS_PORT=5001 rackup config.ru -p 5000 --env production
