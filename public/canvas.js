@@ -53,8 +53,8 @@ var Canvas = function(opts){
     ctx.beginPath();
     ctx.moveTo(line.from.x, line.from.y);
     ctx.lineTo(line.to.x, line.to.y);
-    ctx.closePath();
     ctx.stroke();
+    ctx.closePath();
   };
   this.clear = function(){
     ctx.clearRect(0, 0, self.width, self.height);
